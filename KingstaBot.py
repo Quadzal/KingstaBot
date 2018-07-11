@@ -1,19 +1,12 @@
-try:
-    import platform
-    import subprocess as cmd
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-    import os
-    from time import sleep
-    from InstagramAPI import InstagramAPI
-    import re
-    import pyautogui
-except:
-    if platform.system()=="Windows":
-        cmd.call("pip3 install selenium InstagramApi pyautogui subprocess",shell=True)
-    else:
-        print("")
-
+import platform
+import subprocess as cmd
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import os
+from time import sleep
+from InstagramAPI import InstagramAPI
+import re
+import pyautogui
 
 
 
