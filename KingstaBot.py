@@ -52,8 +52,8 @@ sayi=1
 
 ayarlar = Options()
 ayarlar.add_argument("--headless")
-ayarlar.add_argument("--windows-size=1920x1080")
 driver = webdriver.Chrome(os.getcwd()+"\src\chromedriver.exe",chrome_options=ayarlar)
+cmd.call("cls",shell=True)
 k_adi = input("KingİnstaBot >>> Kullanıcı Adını Giriniz: ")
 sifre = input("KingİnstaBot >>> Sifreyi Giriniz: ")
 def albumvefotoyukle():
@@ -64,7 +64,7 @@ def albumvefotoyukle():
 
     gir=input("Seçiniz>>> ")
 
-    api=InstagramAPI("instadenemehesap35esat88","esat3535")
+    api=InstagramAPI(k_adi,sifre)
     api.login()
     cmd.call("cls", shell=True)
 
@@ -110,17 +110,15 @@ def albumvefotoyukle():
 def girisyapmak():
     if platform.system() == "Windows":
         cmd.call("cls", shell=True)
-    sleep(2)
     if platform.system() == "Windows":
         cmd.call("cls", shell=True)
         cmd.call("color a", shell=True)
+    print("Bot Başlıyor Lütfen Bekleyiniz.")
     driver.get("https://www.instagram.com/")
     if platform.system() == "Windows":
         cmd.call("cls", shell=True)
     sleep(3)
-    print("KingİnstaBot >>> ")
-    print("Bot Başlamıştır!\n")
-
+    print("KingİnstaBot >>> Bot Başlamıştır!\n ")
     print("\nGiriş Yapılıyor...\n")
     girisbutonu = driver.find_element_by_xpath("//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a")
     girisbutonu.click()
@@ -239,10 +237,11 @@ def takipcileritakipet():
         sayi1+=1
 
 def fotobegen():
-    bul = driver.find_element_by_css_selector(".aOOlW.HoLwm")
-    sleep(3)
-    bul.click()
-    sleep(3)
+    #sleep(3)
+    #bul = driver.find_element_by_css_selector(".aOOlW.HoLwm")
+    #sleep(5)
+    #bul.click()
+    #sleep(3)
     driver.get("https://www.instagram.com/")
     fotosayi=0
     anasayfabegeni=int(input("Anasayfanızdaki Kaç Adet Gönderi Beğenilsin: \n"))
@@ -253,11 +252,15 @@ def fotobegen():
     else:
         while fotosayi<anasayfabegeni:
             fotosayi+=1
-            begenbuton=driver.find_element_by_css_selector(".Szr5J.coreSpriteHeartOpen")
-            sleep(1)
-            begenbuton.click()
+            try:
+                begenbuton=driver.find_element_by_css_selector(".glyphsSpriteHeart__outline__24__grey_9.Szr5J")
+                sleep(1)
+                begenbuton.click()
+            except:
+                print("Bilinmedik Bir Hata Oluştu Lütfen Sonra Deneyin!")
+                exit()
 
-    print("Anasayfanızdaki {} Foto Beğenilmiştir!",format(anasayfabegeni))
+    print("Anasayfanızdaki {} Foto Beğenilmiştir!".format(anasayfabegeni))
 
 
 
