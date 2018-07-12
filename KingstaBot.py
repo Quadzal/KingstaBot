@@ -1,6 +1,9 @@
 import platform
 import subprocess as cmd
-from selenium import webdriver
+try:
+    from selenium import webdriver
+except:
+    print("")
 from selenium.webdriver.chrome.options import Options
 import os
 from time import sleep
@@ -51,6 +54,8 @@ ayarlar = Options()
 ayarlar.add_argument("--headless")
 ayarlar.add_argument("--windows-size=1920x1080")
 driver = webdriver.Chrome(os.getcwd()+"\src\chromedriver.exe",chrome_options=ayarlar)
+k_adi = input("KingİnstaBot >>> Kullanıcı Adını Giriniz: ")
+sifre = input("KingİnstaBot >>> Sifreyi Giriniz: ")
 def albumvefotoyukle():
     print("""
 1-)Fotoğraf Yükle
@@ -114,12 +119,8 @@ def girisyapmak():
         cmd.call("cls", shell=True)
     sleep(3)
     print("KingİnstaBot >>> ")
-    global k_adi
     print("Bot Başlamıştır!\n")
-    k_adi = input("KingİnstaBot >>> Kullanıcı Adını Giriniz: ")
 
-    global sifre
-    sifre = input("KingİnstaBot >>> Sifreyi Giriniz: ")
     print("\nGiriş Yapılıyor...\n")
     girisbutonu = driver.find_element_by_xpath("//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a")
     girisbutonu.click()
@@ -182,17 +183,18 @@ def takipvetakipcilericek():
 
 def takiptencik():
     instapi=InstagramAPI(k_adi,sifre)
+    cmd.call("cls",shell=True)
     instapi.login()
     cmd.call("cls", shell=True)
+    print("Unfollow Yapanlar Tespit Ediliyor Lütfen Bekleyin")
     for i in takip:
         if i in liste:
             continue
         else:
             a = i.replace(" ", "")
             unfollow.append(a)
-            print("\nTakip Etmeyenin Kullanıcı Adı: ",a)
-
-    takipcikarsayi=int(input("Ne Kadar Unfollow Yapan Çıkarılsın: "))
+    print("\n{0} Kişi Unfollow Yapmıştır!".format(len(unfollow)))
+    takipcikarsayi=int(input("\nNe Kadar Unfollow Yapan Çıkarılsın: "))
     if takipcikarsayi>len(unfollow):
         print("Unfollow Yapanların Sayısından Fazla Sayı Girdiniz!")
         exit()
